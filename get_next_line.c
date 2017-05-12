@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erucquoy <erucquoy@gmail.com>              +#+  +:+       +#+        */
+/*   By: erucquoy <erucquoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 20:07:33 by erucquoy          #+#    #+#             */
-/*   Updated: 2017/05/11 20:07:33 by erucquoy         ###   ########.fr       */
+/*   Updated: 2017/05/12 09:46:19 by erucquoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	proceed(int const fd, char *buff, char *s[fd])
 
 int			get_next_line(int const fd, char **line)
 {
-	static char	*s[256];
+	static char	*s[OPEN_MAX];
 	char		*tmp;
 	int			i;
 	char		buff[BUFF_SIZE + 1];
@@ -51,6 +51,8 @@ int			get_next_line(int const fd, char **line)
 	{
 		*line = s[fd];
 		s[fd] = NULL;
+		if (*line[0])
+			return (1);
 		return (0);
 	}
 	*line = ft_strsub(s[fd], 0, ft_strchr(s[fd], '\n') - s[fd]);

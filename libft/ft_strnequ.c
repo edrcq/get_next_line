@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erucquoy <erucquoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/11 20:08:14 by erucquoy          #+#    #+#             */
-/*   Updated: 2017/05/12 09:46:40 by erucquoy         ###   ########.fr       */
+/*   Created: 2017/04/15 10:39:34 by erucquoy          #+#    #+#             */
+/*   Updated: 2017/04/19 12:03:33 by erucquoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFF_SIZE 40
+int		ft_strnequ(char const *s1, char const *s2, size_t n)
+{
+	unsigned int	i;
 
-# include "libft/libft.h"
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <limits.h>
-
-int		get_next_line(int const fd, char **line);
-
-#endif
+	if (!s1 && !s2)
+		return (1);
+	if (!s1 || !s2)
+		return (0);
+	i = 0;
+	while (s1[i] && i < n)
+	{
+		if (s1[i] != s2[i])
+			return (0);
+		i++;
+	}
+	if (s2[i] != s1[i] && i != n)
+		return (0);
+	return (1);
+}

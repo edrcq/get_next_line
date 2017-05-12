@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erucquoy <erucquoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/11 20:08:14 by erucquoy          #+#    #+#             */
-/*   Updated: 2017/05/12 09:46:40 by erucquoy         ###   ########.fr       */
+/*   Created: 2017/04/12 12:30:54 by erucquoy          #+#    #+#             */
+/*   Updated: 2017/04/12 12:31:53 by erucquoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+int		ft_atoi(char *str)
+{
+	int	res;
+	int	x;
+	int	coef;
 
-# define BUFF_SIZE 40
-
-# include "libft/libft.h"
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <limits.h>
-
-int		get_next_line(int const fd, char **line);
-
-#endif
+	x = 0;
+	res = 0;
+	coef = 1;
+	while ((str[x] > 8 && str[x] < 14) || str[x] == 32)
+		x++;
+	if (str[x] == '-' || str[x] == '+')
+	{
+		coef = (str[x] == '-' ? -1 : 1);
+		x++;
+	}
+	while (str[x] >= '0' && str[x] <= '9')
+	{
+		res = (res * 10) + str[x] - '0';
+		x++;
+	}
+	return (res * coef);
+}

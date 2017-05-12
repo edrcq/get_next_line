@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erucquoy <erucquoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/11 20:08:14 by erucquoy          #+#    #+#             */
-/*   Updated: 2017/05/12 09:46:40 by erucquoy         ###   ########.fr       */
+/*   Created: 2017/04/12 17:56:13 by erucquoy          #+#    #+#             */
+/*   Updated: 2017/04/12 19:41:29 by erucquoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFF_SIZE 40
+static void		ft_memset_char(unsigned char *b, unsigned char c, size_t p)
+{
+	b[p] = c;
+}
 
-# include "libft/libft.h"
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <limits.h>
+void			*ft_memset(void *b, int c, size_t len)
+{
+	unsigned int	i;
+	unsigned char	ch;
 
-int		get_next_line(int const fd, char **line);
-
-#endif
+	i = 0;
+	ch = (unsigned char)c;
+	while (i < len)
+		ft_memset_char((unsigned char *)b, ch, i++);
+	return (b);
+}

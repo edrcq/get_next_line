@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erucquoy <erucquoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/11 20:08:14 by erucquoy          #+#    #+#             */
-/*   Updated: 2017/05/12 09:46:40 by erucquoy         ###   ########.fr       */
+/*   Created: 2017/04/14 17:08:35 by erucquoy          #+#    #+#             */
+/*   Updated: 2017/04/14 18:16:17 by erucquoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFF_SIZE 40
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	char *csrc;
+	char *cdst;
 
-# include "libft/libft.h"
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <limits.h>
-
-int		get_next_line(int const fd, char **line);
-
-#endif
+	csrc = (char *)src;
+	cdst = (char *)dst;
+	if (!len)
+		return (dst);
+	if (dst <= src)
+		return (ft_memcpy(dst, src, len));
+	csrc += len;
+	cdst += len;
+	while (len--)
+		*--cdst = *--csrc;
+	return (dst);
+}
